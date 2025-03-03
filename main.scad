@@ -24,11 +24,14 @@ module axis_base()
     {
         circle(r = axis_diameter / 2);
 
-        translate([ 0, axis_thickness ])
         {
-            square(size = [ cross_thickness, cross_length + axis_thickness ], center = true);
+            square(size = [ cross_thickness, cross_length ], center = true);
+            square(size = [ cross_length, cross_thickness ], center = true);
+            translate([ 0, cross_length / 2 ])
+            {
+                square(size = [ cross_thickness, cross_length ], center = true);
+            }
         }
-        square(size = [ cross_length, cross_thickness ], center = true);
     }
 }
 
