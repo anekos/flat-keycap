@@ -43,14 +43,6 @@ module axis()
     linear_extrude(height = axis_depth + top_thickness()) axis_base();
 }
 
-module top_base(d = 0)
-{
-    fillet2d(r = top_r, d = d)
-    {
-        square(size = [ cap_width, cap_height ], center = true);
-    }
-}
-
 module outer()
 {
     difference()
