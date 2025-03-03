@@ -3,7 +3,6 @@ $fn = 70;
 cross_thickness = 1.3;
 cross_length = 4.0 + 0.2;
 
-axis_thickness = 1.0;
 axis_diameter = 6.0;
 
 axis_depth = 6.0;
