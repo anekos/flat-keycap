@@ -13,3 +13,7 @@ build: $(FILENAME)
 $(FILENAME): main.scad
 	mkdir -p dist
 	openscad --hardwarnings -o $(FILENAME) main.scad
+
+.PHONY: version
+version:
+	@echo $(VERSION)
