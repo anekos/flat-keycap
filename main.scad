@@ -12,6 +12,10 @@ cap_width = 18.0;
 cap_height = cap_width;
 cap_depth = 9;
 
+character = "";
+
+function top_thickness() = (character == "") ? thickness : thickness * 2;
+
 module fillet2d(r, d = 0)
 {
     offset(r = r) offset(delta = -r) children(0);
@@ -36,7 +40,7 @@ module axis_base()
 
 module axis()
 {
-    linear_extrude(height = axis_depth + thickness) axis_base();
+    linear_extrude(height = axis_depth + top_thickness()) axis_base();
 }
 
 module top_base(d = 0)
@@ -59,7 +63,7 @@ module outer()
             }
         }
 
-        translate([ 0, 0, thickness ])
+        translate([ 0, 0, top_thickness() ])
         {
             linear_extrude(height = cap_depth)
             {
@@ -72,5 +76,30 @@ module outer()
     }
 }
 
-axis();
-outer();
+module character_top()
+{
+    linear_extrude(height = thickness * 2, center = true)
+    {
+        scale([ 0.8, 0.8 ])
+        {
+            mirror([ 1, 0 ])
+            {
+                text(text = character, size = cap_width, valign = "center", halign = "center");
+            }
+        }
+    }
+}
+
+difference()
+{
+    union()
+    {
+        axis();
+        outer();
+    }
+
+    if (character != "")
+    {
+        character_top();
+    }
+}
