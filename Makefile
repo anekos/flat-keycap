@@ -1,5 +1,6 @@
 PROJECT_NAME=$(shell basename $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-FILENAME=dist/$(PROJECT_NAME).stl
+VERSION=$(shell git log --oneline | wc -l)
+FILENAME=dist/$(PROJECT_NAME)-v$(VERSION).stl
 
 .PHONY: preview
 preview:
